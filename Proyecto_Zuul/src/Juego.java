@@ -65,6 +65,9 @@ public class Juego {
         else if(palabraComando.equals("ir")){
             entrarSala(comando);
         }
+        else if(palabraComando.equals("abandonar")){
+            abandonarJuego = abandonar(comando);
+        }
         return abandonarJuego;
     }
 
@@ -110,6 +113,16 @@ public class Juego {
                 System.out.print("oeste ");
             }
             System.out.println();
+        }
+    }
+
+    private boolean abandonar(Comando comando){
+        if(comando.contieneSegundaPalabra()){
+            System.out.println("¿Abandonar que?");
+            return false;
+        }
+        else{
+            return true;
         }
     }
 }
