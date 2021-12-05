@@ -1,9 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-import javax.crypto.AEADBadTagException;
-
 public class Juego {
     private Sala salaActual;
 
@@ -12,57 +6,36 @@ public class Juego {
     }
 
     private void crearSalas(){
-        try {
-            File archivo = new File("salas.txt");
-            Scanner lector = new Scanner(archivo);
-            String primeralinea = lector.nextLine();
-            String[] datosPrimeraLinea = primeralinea.split(",");
-            int nSalas = Integer.parseInt(datosPrimeraLinea[0]);
-            
-            Sala[] salas = new Sala[nSalas];
-            String strSalaActual = datosPrimeraLinea[1];
-            String nombreSala;
-            String descripcionSala;
-            String[] datos;
-
-            for (int i = 0; i < nSalas && lector.hasNextLine(); i++) {
-                datos = lector.nextLine().split(",");
-                nombreSala = datos[0];
-                descripcionSala = datos[1];
-                salas[i] = new Sala(nombreSala, descripcionSala);
-            }
-
-            Sala norte, este, sur, oeste;
-            for (int i = 0; i < nSalas && lector.hasNextLine(); i++) {
-                datos = lector.nextLine().split(",");
-                norte = Sala.buscarSala(salas, datos[0]);
-                este = Sala.buscarSala(salas, datos[1]);
-                sur = Sala.buscarSala(salas, datos[2]);
-                oeste = Sala.buscarSala(salas, datos[3]);
-                salas[i].setSalidas(norte, este, sur, oeste);
-            }
-            salaActual = Sala.buscarSala(salas, strSalaActual);
-            lector.close();
-            /*if(!validarSalas(salas)){
-                System.out.println("LAS SALAS NO ESTAN BIEN CONECTADAS.");
-            }*/
-            for (int i = 0; i < salas.length; i++) {
-                System.out.println(salas[i].getNombre() + " " + salas[i].getSalidas());
-            }
-          } catch (FileNotFoundException e) {
-            System.out.println("Ocurrió un error.");
-            e.printStackTrace();
-          }
+        ArchivoSalas archivoSalas = new ArchivoSalas("salas.txt");
+        salaActual = archivoSalas.crearSalas();
     }
 
-    /*private boolean validarSalas(Sala[] salas){
-        for (Sala sala : salas) {
-            if((sala.getSalidaNorte() != null) 
-            && !(sala.getSalidaNorte().getSalidaSur() != null) 
-            && !(sala.getNombre().equals(sala.getSalidaNorte().getSalidaSur().getNombre()))){
-                return false;
-            }
+    public void jugar(){
+        imprimirBienvenida();
+    }
+
+    private void imprimirBienvenida(){
+        System.out.println("¡Bienvenido a Zuul!\nZuul es un nuevo juego increíblemente aburrido.\nEscribe 'ayuda' si necesitas ayuda.");
+        System.out.println("Te encuentras " + salaActual.getDescripcion());
+        System.out.println("Salidas: "); 
+        
+        if(salaActual.salidaNorte != null){
+            System.out.println("norte ");
         }
-        return true;
-    }*/
+        if(salaActual.salidaEste != null) {
+            System.out.print("este ");
+        }
+        if(salaActual.salidaSur != null) {
+            System.out.print("sur ");
+        }
+        if(salaActual.salidaOeste != null) {
+            System.out.print("oeste ");
+        }
+        System.out.println();
+    }
+
+    private void imprimirAyuda(){
+        System.out.println("Te encuentras perdido y solo. Exploras alrededor de la universidad.");
+        System.out.println("Tus comandos son: \n go quit help");
+    }
 }
