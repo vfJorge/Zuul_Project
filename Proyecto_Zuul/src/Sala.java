@@ -1,11 +1,13 @@
 public class Sala {
+    public String nombre;
     public String descripcion;
     public Sala salidaNorte;
     public Sala salidaSur;
     public Sala salidaEste;
     public Sala salidaOeste;
 
-    public Sala(String descripcion){
+    public Sala(String nombre, String descripcion){
+        this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
@@ -24,7 +26,53 @@ public class Sala {
         }
     }
 
+    public static Sala buscarSala(Sala[] salas, String strBuscar){
+        for (Sala sala : salas) {
+            if(strBuscar.equals(sala.getNombre())){
+                return sala;
+            }
+        }
+        return null;
+    }
+
     public String getDescripcion(){
         return descripcion;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public Sala getSalidaNorte() {
+        return salidaNorte;
+    }
+
+    public Sala getSalidaSur() {
+        return salidaSur;
+    }
+
+    public Sala getSalidaEste() {
+        return salidaEste;
+    }
+
+    public Sala getSalidaOeste() {
+        return salidaOeste;
+    }
+
+    public String getSalidas() {
+        String salida = "";
+        if(salidaNorte != null){
+            salida += " Norte: " + salidaNorte.getNombre();
+        }
+        if(salidaEste != null){
+            salida += " Este: " + salidaEste.getNombre();
+        }
+        if(salidaSur != null){
+            salida += " Sur: " + salidaSur.getNombre();
+        }
+        if(salidaOeste != null){
+            salida += " Oeste: " + salidaOeste.getNombre();
+        }
+        return salida;
     }
 }
