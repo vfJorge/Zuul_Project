@@ -43,24 +43,6 @@ public class ArchivoSalas {
             salas[i].setSalidas(norte, este, sur, oeste);
         }
         lector.close();
-        // imprimir salas con sus salidas
-        /*for (Sala sala : salas) {
-            System.out.println(sala.getNombre() + " " + sala.getSalidas());
-        }*/
         return Sala.buscarSala(salas, strSalaActual);
-        /*if(!validarSalas(salas)){
-            System.out.println("LAS SALAS NO ESTAN BIEN CONECTADAS.");
-        }*/
     }
-
-    /*private boolean validarSalas(Sala[] salas){
-        for (Sala sala : salas) {
-            if((sala.getSalidaNorte() != null) 
-            && !(sala.getSalidaNorte().getSalidaSur() != null) 
-            && !(sala.getNombre().equals(sala.getSalidaNorte().getSalidaSur().getNombre()))){
-                return false;
-            }
-        }
-        return true;
-    }*/
 }
