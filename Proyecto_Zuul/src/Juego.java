@@ -14,13 +14,14 @@ public class Juego {
             File archivo = new File("salas.txt");
             Scanner lector = new Scanner(archivo);
             String primeralinea = lector.nextLine();
-            String[] datos = primeralinea.split(",");
-            int nSalas = Integer.parseInt(datos[0]);
+            String[] datosPrimeraLinea = primeralinea.split(",");
+            int nSalas = Integer.parseInt(datosPrimeraLinea[0]);
             
             Sala[] salas = new Sala[nSalas];
-            String strSalaActual = datos[1];
+            String strSalaActual = datosPrimeraLinea[1];
             String nombreSala;
             String descripcionSala;
+            String[] datos;
 
             for (int i = 0; i < nSalas && lector.hasNextLine(); i++) {
                 datos = lector.nextLine().split(",");
@@ -41,7 +42,7 @@ public class Juego {
             salaActual = Sala.buscarSala(salas, strSalaActual);
             lector.close();
             for (int i = 0; i < salas.length; i++) {
-                System.out.println(salas[i].toString());
+                System.out.println(salas[i].getNombre() + " " + salas[i].getSalidas());
             }
           } catch (FileNotFoundException e) {
             System.out.println("Ocurrió un error.");

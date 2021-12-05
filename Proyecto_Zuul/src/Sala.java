@@ -43,8 +43,20 @@ public class Sala {
         return nombre;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public String getSalidas() {
+        String salida = "";
+        if(salidaNorte != null){
+            salida += " Norte: " + salidaNorte.getNombre();
+        }
+        if(salidaEste != null){
+            salida += " Este: " + salidaEste.getNombre();
+        }
+        if(salidaSur != null){
+            salida += " Sur: " + salidaSur.getNombre();
+        }
+        if(salidaOeste != null){
+            salida += " Oeste: " + salidaOeste.getNombre();
+        }
+        return salida;
     }
 }

@@ -4,8 +4,8 @@ teatro,en un teatro de lectura
 taberna,en la taberna del campus
 laboratorio,en el laboratorio de computacion
 oficina,en la oficina de administracion
-,teatro,laboratorio,taberna
-,,,afuera
-,afuera,,
-afuera,oficina,,
-,,,laboratorio
+null,teatro,laboratorio,taberna
+null,null,null,afuera
+null,afuera,null,null
+afuera,oficina,null,null
+null,null,null,laboratorio
