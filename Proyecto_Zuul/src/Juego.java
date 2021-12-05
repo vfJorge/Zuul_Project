@@ -62,6 +62,54 @@ public class Juego {
         if(palabraComando.equals("ayuda")){
             imprimirAyuda();
         }
+        else if(palabraComando.equals("ir")){
+            entrarSala(comando);
+        }
         return abandonarJuego;
+    }
+
+    private void entrarSala(Comando comando){
+        if(!comando.contieneSegundaPalabra()){
+            System.out.println("¿Ir a donde?");
+            return;
+        }
+
+        String direccion = comando.getSegundaPalabra();
+
+        Sala siguienteSala = null;
+        if(direccion.equals("norte")){
+            siguienteSala = salaActual.salidaNorte;
+        }
+        if(direccion.equals("este")){
+            siguienteSala = salaActual.salidaEste;
+        }
+        if(direccion.equals("sur")){
+            siguienteSala = salaActual.salidaSur;
+        }
+        if(direccion.equals("oeste")){
+            siguienteSala = salaActual.salidaOeste;
+        }
+
+        if(siguienteSala == null){
+            System.out.println("¡No existe esa puerta!");
+        }
+        else{
+            salaActual = siguienteSala;
+            System.out.println("Te encuentras " + salaActual.getDescripcion());
+            System.out.print("Salidas: ");
+            if(salaActual.salidaNorte != null) {
+                System.out.print("norte ");
+            }
+            if(salaActual.salidaEste != null) {
+                System.out.print("este ");
+            }
+            if(salaActual.salidaSur != null) {
+                System.out.print("sur ");
+            }
+            if(salaActual.salidaOeste != null) {
+                System.out.print("oeste ");
+            }
+            System.out.println();
+        }
     }
 }
