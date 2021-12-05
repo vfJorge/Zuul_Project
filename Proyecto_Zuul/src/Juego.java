@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import javax.crypto.AEADBadTagException;
+
 public class Juego {
     private Sala salaActual;
 
@@ -41,6 +43,9 @@ public class Juego {
             }
             salaActual = Sala.buscarSala(salas, strSalaActual);
             lector.close();
+            /*if(!validarSalas(salas)){
+                System.out.println("LAS SALAS NO ESTAN BIEN CONECTADAS.");
+            }*/
             for (int i = 0; i < salas.length; i++) {
                 System.out.println(salas[i].getNombre() + " " + salas[i].getSalidas());
             }
@@ -49,4 +54,15 @@ public class Juego {
             e.printStackTrace();
           }
     }
+
+    /*private boolean validarSalas(Sala[] salas){
+        for (Sala sala : salas) {
+            if((sala.getSalidaNorte() != null) 
+            && !(sala.getSalidaNorte().getSalidaSur() != null) 
+            && !(sala.getNombre().equals(sala.getSalidaNorte().getSalidaSur().getNombre()))){
+                return false;
+            }
+        }
+        return true;
+    }*/
 }

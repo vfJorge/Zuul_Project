@@ -43,6 +43,22 @@ public class Sala {
         return nombre;
     }
 
+    public Sala getSalidaNorte() {
+        return salidaNorte;
+    }
+
+    public Sala getSalidaSur() {
+        return salidaSur;
+    }
+
+    public Sala getSalidaEste() {
+        return salidaEste;
+    }
+
+    public Sala getSalidaOeste() {
+        return salidaOeste;
+    }
+
     public String getSalidas() {
         String salida = "";
         if(salidaNorte != null){
