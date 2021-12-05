@@ -1,0 +1,11 @@
+5,afuera
+afuera,afuera de la entrada principal de la universidad
+teatro,en un teatro de lectura
+taberna,en la taberna del campus
+laboratorio,en el laboratorio de computacion
+oficina,en la oficina de administracion
+,teatro,laboratorio,taberna
+,,,afuera
+,afuera,,
+afuera,oficina,,
+,,,laboratorio
