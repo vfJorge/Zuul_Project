@@ -7,6 +7,10 @@ public class Analizador {
         lector = new Scanner(System.in);
     }
 
+    /**
+     * Se encarga de leer las palabras introducidas por el jugador
+     * @return un comando de clase Comando
+     */
     public Comando getComando(){
         String input;
         String palabra1 = null;

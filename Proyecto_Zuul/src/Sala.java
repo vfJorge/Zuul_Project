@@ -11,6 +11,13 @@ public class Sala {
         this.descripcion = descripcion;
     }
 
+    /**
+     * 
+     * @param norte
+     * @param este
+     * @param sur
+     * @param oeste
+     */
     public void setSalidas(Sala norte, Sala este, Sala sur, Sala oeste){
         if(norte != null){
             salidaNorte = norte;
@@ -26,6 +33,12 @@ public class Sala {
         }
     }
 
+    /**
+     * 
+     * @param salas arreglo de salas
+     * @param strBuscar nombre de sala a buscar
+     * @return la <b>sala</b> encontrada, de otra forma null
+     */
     public static Sala buscarSala(Sala[] salas, String strBuscar){
         for (Sala sala : salas) {
             if(strBuscar.equals(sala.getNombre())){
@@ -57,22 +70,5 @@ public class Sala {
 
     public Sala getSalidaOeste() {
         return salidaOeste;
-    }
-
-    public String getSalidas() {
-        String salida = "";
-        if(salidaNorte != null){
-            salida += " Norte: " + salidaNorte.getNombre();
-        }
-        if(salidaEste != null){
-            salida += " Este: " + salidaEste.getNombre();
-        }
-        if(salidaSur != null){
-            salida += " Sur: " + salidaSur.getNombre();
-        }
-        if(salidaOeste != null){
-            salida += " Oeste: " + salidaOeste.getNombre();
-        }
-        return salida;
     }
 }

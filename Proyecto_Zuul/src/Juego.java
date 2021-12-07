@@ -12,6 +12,9 @@ public class Juego {
         salaActual = archivoSalas.crearSalas();
     }
 
+    /**
+     * Inicia la secuencia del juego Zuul
+     */
     public void jugar(){
         imprimirBienvenida();
 
@@ -50,6 +53,12 @@ public class Juego {
         System.out.println("Tus comandos son: \n ir abandonar ayuda");
     }
 
+    /**
+     * Se encarga de procesar el comando introducido y ejecutar la acción correspondiente 
+     * al comando
+     * @param comando a ejecutar
+     * @return true si desea abandonar el juego, false si sigue jugando.
+     */
     private boolean procesarComando(Comando comando){
         boolean abandonarJuego = false;
 
@@ -71,6 +80,11 @@ public class Juego {
         return abandonarJuego;
     }
 
+    /**
+     * Se encarga de redirigir al jugador a la sala dependiendo de la salida
+     * que elija 
+     * @param comando a ejecutar
+     */
     private void entrarSala(Comando comando){
         if(!comando.contieneSegundaPalabra()){
             System.out.println("¿Ir a donde?");
@@ -116,6 +130,12 @@ public class Juego {
         }
     }
 
+    /**
+     * 
+     * @param comando a ejecutar
+     * @return true para terminar la ejecución del programa, false
+     * para continuar con la ejecución del programa.
+     */
     private boolean abandonar(Comando comando){
         if(comando.contieneSegundaPalabra()){
             System.out.println("¿Abandonar que?");

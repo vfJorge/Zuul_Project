@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ArchivoSalas {
     File archivo;
     Scanner lector;
-    
+
     public ArchivoSalas(String nombreArchivo){
         archivo = new File(nombreArchivo);
         try {
@@ -15,6 +15,11 @@ public class ArchivoSalas {
         }
     }
 
+    /**
+     * Se encarga de crear las salas, asignarles su nombre y descripción respectiva
+     * y enlazar las salas con sus salidas
+     * @return la sala inicial del juego
+     */
     public Sala crearSalas(){
         String primeralinea = lector.nextLine();
         String[] datosPrimeraLinea = primeralinea.split(",");
