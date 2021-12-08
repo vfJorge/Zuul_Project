@@ -1,3 +1,4 @@
+package Resources;
 public class Comando {
     private String palabraComando;
     private String segundaPalabra;
