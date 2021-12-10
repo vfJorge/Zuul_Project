@@ -1,6 +1,8 @@
 package Resources;
 import java.io.File;
 
+import Exceptions.ComandoDesconocidoException;
+
 public class Juego {
     private Analizador analizador;
     private Sala salaActual;
@@ -65,8 +67,13 @@ public class Juego {
     private boolean procesarComando(Comando comando){
         boolean abandonarJuego = false;
 
-        if(comando.esDesconocido()){
-            System.out.println("No entiendo a lo que te refieres...");
+        try{
+            if(comando.esDesconocido()){
+                throw new ComandoDesconocidoException("No entiendo a lo que te refieres...");
+            }
+        }
+        catch(ComandoDesconocidoException e){
+            System.out.println(e.getMessage());
             return false;
         }
 

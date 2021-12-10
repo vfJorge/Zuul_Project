@@ -22,7 +22,6 @@ public class Movilidad {
         String direccion = comando.getSegundaPalabra();
         Sala siguienteSala = buscarSalida(salaActual, direccion);
 
-
         if(siguienteSala.isNull()){
             System.out.println("¡No existe esa puerta!");
             return salaActual;
