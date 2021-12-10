@@ -1,3 +1,4 @@
+package Resources;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -6,8 +7,8 @@ public class ArchivoSalas {
     File archivo;
     Scanner lector;
 
-    public ArchivoSalas(String nombreArchivo){
-        archivo = new File(nombreArchivo);
+    public ArchivoSalas(File archivoSalas){
+        this.archivo = archivoSalas;
         try {
             lector = new Scanner(archivo);
         } catch (FileNotFoundException e) {

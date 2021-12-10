@@ -1,14 +1,16 @@
+package Resources;
+import java.io.File;
+
 public class Juego {
     private Analizador analizador;
     private Sala salaActual;
 
     public Juego(){
-        crearSalas();
         analizador = new Analizador();
     }
 
-    private void crearSalas(){
-        ArchivoSalas archivoSalas = new ArchivoSalas("salas.txt");
+    public void crearSalas(File fileSalas){
+        ArchivoSalas archivoSalas = new ArchivoSalas(fileSalas);
         salaActual = archivoSalas.crearSalas();
     }
 
@@ -84,11 +86,12 @@ public class Juego {
      * Se encarga de redirigir al jugador a la sala dependiendo de la salida
      * que elija 
      * @param comando a ejecutar
+     * @return sala en la que se encuentra despues de ejecutar el comando
      */
-    private void entrarSala(Comando comando){
+    public Sala entrarSala(Comando comando){
         if(!comando.contieneSegundaPalabra()){
             System.out.println("¿Ir a donde?");
-            return;
+            return salaActual;
         }
 
         String direccion = comando.getSegundaPalabra();
@@ -109,6 +112,7 @@ public class Juego {
 
         if(siguienteSala == null){
             System.out.println("¡No existe esa puerta!");
+            return salaActual;
         }
         else{
             salaActual = siguienteSala;
@@ -126,7 +130,9 @@ public class Juego {
             if(salaActual.salidaOeste != null) {
                 System.out.print("oeste ");
             }
+            
             System.out.println();
+            return salaActual;
         }
     }
 

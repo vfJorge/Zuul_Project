@@ -1,3 +1,4 @@
+package Resources;
 import java.util.Scanner;
 
 public class Analizador {
