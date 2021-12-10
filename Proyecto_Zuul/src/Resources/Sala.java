@@ -46,7 +46,7 @@ public class Sala {
                 return sala;
             }
         }
-        return null;
+        return new NullSala();
     }
 
     public String getDescripcion(){
@@ -71,6 +71,10 @@ public class Sala {
 
     public Sala getSalidaOeste() {
         return salidaOeste;
+    }
+
+    public  boolean isNull(){
+        return false;
     }
 
     @Override

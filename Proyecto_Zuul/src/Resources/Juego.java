@@ -4,6 +4,7 @@ import java.io.File;
 public class Juego {
     private Analizador analizador;
     private Sala salaActual;
+    private Movilidad movilidad;
 
     public Juego(){
         analizador = new Analizador();
@@ -12,6 +13,7 @@ public class Juego {
     public void crearSalas(File fileSalas){
         ArchivoSalas archivoSalas = new ArchivoSalas(fileSalas);
         salaActual = archivoSalas.crearSalas();
+        movilidad = new Movilidad(salaActual);
     }
 
     /**
@@ -19,7 +21,6 @@ public class Juego {
      */
     public void jugar(){
         imprimirBienvenida();
-
         boolean terminado = false;
         while(!terminado){
             Comando comando = analizador.getComando();
@@ -35,16 +36,16 @@ public class Juego {
         System.out.println("Te encuentras " + salaActual.getDescripcion());
         System.out.println("Salidas: "); 
         
-        if(salaActual.salidaNorte != null){
+        if(!salaActual.salidaNorte.isNull()){
             System.out.println("norte ");
         }
-        if(salaActual.salidaEste != null) {
+        if(!salaActual.salidaEste.isNull()) {
             System.out.print("este ");
         }
-        if(salaActual.salidaSur != null) {
+        if(!salaActual.salidaSur.isNull()) {
             System.out.print("sur ");
         }
-        if(salaActual.salidaOeste != null) {
+        if(!salaActual.salidaOeste.isNull()) {
             System.out.print("oeste ");
         }
         System.out.println();
@@ -74,7 +75,7 @@ public class Juego {
             imprimirAyuda();
         }
         else if(palabraComando.equals("ir")){
-            entrarSala(comando);
+            salaActual = entrarSala(comando);
         }
         else if(palabraComando.equals("abandonar")){
             abandonarJuego = abandonar(comando);
@@ -82,58 +83,8 @@ public class Juego {
         return abandonarJuego;
     }
 
-    /**
-     * Se encarga de redirigir al jugador a la sala dependiendo de la salida
-     * que elija 
-     * @param comando a ejecutar
-     * @return sala en la que se encuentra despues de ejecutar el comando
-     */
-    public Sala entrarSala(Comando comando){
-        if(!comando.contieneSegundaPalabra()){
-            System.out.println("¿Ir a donde?");
-            return salaActual;
-        }
-
-        String direccion = comando.getSegundaPalabra();
-
-        Sala siguienteSala = null;
-        if(direccion.equals("norte")){
-            siguienteSala = salaActual.salidaNorte;
-        }
-        if(direccion.equals("este")){
-            siguienteSala = salaActual.salidaEste;
-        }
-        if(direccion.equals("sur")){
-            siguienteSala = salaActual.salidaSur;
-        }
-        if(direccion.equals("oeste")){
-            siguienteSala = salaActual.salidaOeste;
-        }
-
-        if(siguienteSala == null){
-            System.out.println("¡No existe esa puerta!");
-            return salaActual;
-        }
-        else{
-            salaActual = siguienteSala;
-            System.out.println("Te encuentras " + salaActual.getDescripcion());
-            System.out.print("Salidas: ");
-            if(salaActual.salidaNorte != null) {
-                System.out.print("norte ");
-            }
-            if(salaActual.salidaEste != null) {
-                System.out.print("este ");
-            }
-            if(salaActual.salidaSur != null) {
-                System.out.print("sur ");
-            }
-            if(salaActual.salidaOeste != null) {
-                System.out.print("oeste ");
-            }
-            
-            System.out.println();
-            return salaActual;
-        }
+    public Sala entrarSala(Comando comando) {
+        return movilidad.entrarSala(comando);
     }
 
     /**

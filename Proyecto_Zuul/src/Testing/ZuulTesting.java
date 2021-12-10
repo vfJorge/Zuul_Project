@@ -58,8 +58,10 @@ public class ZuulTesting {
         Path file = tempDir.resolve("salas.txt");
         Juego juego = new Juego();
         juego.crearSalas(file.toFile());
-        Comando comando = new Comando("ir","ads");
+
+        Comando comando = new Comando("ir","su");
         Sala salaInicio =  new Sala("afuera","afuera de la entrada principal de la universidad");
+
         Sala salaActual = juego.entrarSala(comando);
 
         assertEquals(salaInicio, salaActual);
