@@ -13,6 +13,8 @@ import org.junit.jupiter.api.io.TempDir;
 import Resources.ArchivoSalas;
 import Resources.Comando;
 import Resources.Juego;
+import Resources.Movilidad;
+import Resources.NullSala;
 import Resources.Sala;
 
 public class ZuulTesting {
@@ -49,20 +51,36 @@ public class ZuulTesting {
         Path file = tempDir.resolve("salas.txt");
         ArchivoSalas archivoSalas = new ArchivoSalas(file.toFile());
         Sala salaInicio =  new Sala("afuera","afuera de la entrada principal de la universidad");
+        Sala salaEste =  new Sala("teatro","en un teatro de lectura");
+        Sala salaSur =  new Sala("laboratorio","en el laboratorio de computacion");
+        Sala salaOeste =  new Sala("taberna","en la taberna del campus");
 
-        assertEquals(salaInicio, archivoSalas.crearSalas());
+        Sala salaActual = archivoSalas.crearSalas();
+
+        assertEquals(salaInicio, salaActual);
+        assertEquals(new NullSala(), salaActual.salidaNorte);
+        assertEquals(salaEste, salaActual.salidaEste);
+        assertEquals(salaSur, salaActual.salidaSur);
+        assertEquals(salaOeste, salaActual.salidaOeste);
+
     }
 
     @Test
     void testEntrarSala() {
         Path file = tempDir.resolve("salas.txt");
-        Juego juego = new Juego();
-        juego.crearSalas(file.toFile());
-        Comando comando = new Comando("ir","ads");
-        Sala salaInicio =  new Sala("afuera","afuera de la entrada principal de la universidad");
-        Sala salaActual = juego.entrarSala(comando);
+        ArchivoSalas archivoSalas = new ArchivoSalas(file.toFile());
+        Movilidad movilidad = new Movilidad(archivoSalas.crearSalas());
 
-        assertEquals(salaInicio, salaActual);
+        Comando comandoInvalido = new Comando("ir","norte");
+        Comando comandoValido = new Comando("ir","este");
+        
+        Sala salaInicio =  new Sala("afuera","afuera de la entrada principal de la universidad");
+        Sala salaEste =  new Sala("teatro","en un teatro de lectura");
+
+        //Falla cuando el comando es correcto
+        assertEquals(salaInicio, movilidad.entrarSala(comandoInvalido));
+        //Falla cuando el comando es invalido
+        assertEquals(salaEste, movilidad.entrarSala(comandoValido));
         
     }
 
