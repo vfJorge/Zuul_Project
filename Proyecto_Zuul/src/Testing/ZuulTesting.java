@@ -15,8 +15,11 @@ import Resources.Comando;
 import Resources.Juego;
 import Resources.Sala;
 
-public class Zuul_Testing {
+public class ZuulTesting {
+    //Crea carpeta temporal
     @TempDir Path tempDir;
+    //Precondicion para ambos test
+    //Crea un archivo temporal dentro de la carpeta temporal con el contenido de "salas.txt"
     @BeforeEach public void crearArchivoSalas() {
         try {
             Path file = tempDir.resolve("salas.txt");
