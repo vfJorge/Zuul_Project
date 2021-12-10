@@ -1,5 +1,7 @@
 package Resources;
 
+import Exceptions.PuertaInexistenteException;
+
 public class Movilidad {
 
     Sala salaActual;
@@ -22,15 +24,20 @@ public class Movilidad {
         String direccion = comando.getSegundaPalabra();
         Sala siguienteSala = buscarSalida(salaActual, direccion);
 
-        if(siguienteSala.isNull()){
-            System.out.println("¡No existe esa puerta!");
-            return salaActual;
+        try{
+            if(siguienteSala.isNull()){
+                throw new PuertaInexistenteException("¡No existe esa puerta!");
+            }
+            else{
+                salaActual = siguienteSala;        
+                imprimirSalida();
+            }
         }
-        else{
-            salaActual = siguienteSala;        
-            imprimirSalida();
-            return salaActual;
+        catch(PuertaInexistenteException e){
+            System.out.println(e.getMessage());
         }
+        
+        return salaActual;
     }
 
     private Sala buscarSalida(Sala salaActual,String direccion){
