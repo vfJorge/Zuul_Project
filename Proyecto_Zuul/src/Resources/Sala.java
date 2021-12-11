@@ -2,10 +2,10 @@ package Resources;
 public class Sala {
     public String nombre;
     public String descripcion;
-    public Sala salidaNorte;
-    public Sala salidaSur;
-    public Sala salidaEste;
-    public Sala salidaOeste;
+    private Sala salidaNorte;
+    private Sala salidaSur;
+    private Sala salidaEste;
+    private Sala salidaOeste;
 
     public Sala(String nombre, String descripcion){
         this.nombre = nombre;
@@ -76,7 +76,8 @@ public class Sala {
     public  boolean isNull(){
         return false;
     }
-
+    //Refactoring reference to value
+    //Se hizo para poder comparar objetos de tipo sala en las pruebas unitarias
     @Override
     public int hashCode() {
         final int prime = 31;
