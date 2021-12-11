@@ -38,16 +38,16 @@ public class Juego {
         System.out.println("Te encuentras " + salaActual.getDescripcion());
         System.out.println("Salidas: "); 
         
-        if(!salaActual.salidaNorte.isNull()){
+        if(!salaActual.getSalidaNorte().isNull()){
             System.out.println("norte ");
         }
-        if(!salaActual.salidaEste.isNull()) {
+        if(!salaActual.getSalidaEste().isNull()) {
             System.out.print("este ");
         }
-        if(!salaActual.salidaSur.isNull()) {
+        if(!salaActual.getSalidaSur().isNull()) {
             System.out.print("sur ");
         }
-        if(!salaActual.salidaOeste.isNull()) {
+        if(!salaActual.getSalidaOeste().isNull()) {
             System.out.print("oeste ");
         }
         System.out.println();

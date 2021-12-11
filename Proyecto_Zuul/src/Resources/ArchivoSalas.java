@@ -32,6 +32,7 @@ public class ArchivoSalas {
         String descripcionSala;
         String[] datos;
 
+        //Crea las salas
         for (int i = 0; i < nSalas && lector.hasNextLine(); i++) {
             datos = lector.nextLine().split(",");
             nombreSala = datos[0];
@@ -39,6 +40,7 @@ public class ArchivoSalas {
             salas[i] = new Sala(nombreSala, descripcionSala);
         }
 
+        //Asigna las salidas
         Sala norte, este, sur, oeste;
         for (int i = 0; i < nSalas && lector.hasNextLine(); i++) {
             datos = lector.nextLine().split(",");
@@ -48,6 +50,7 @@ public class ArchivoSalas {
             oeste = Sala.buscarSala(salas, datos[3]);
             salas[i].setSalidas(norte, este, sur, oeste);
         }
+
         lector.close();
         return Sala.buscarSala(salas, strSalaActual);
     }

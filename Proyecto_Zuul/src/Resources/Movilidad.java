@@ -18,6 +18,7 @@ public class Movilidad {
     public Sala entrarSala(Comando comando){
         if(!comando.contieneSegundaPalabra()){
             System.out.println("¿Ir a donde?");
+            imprimirSalida();
             return salaActual;
         }
 
@@ -42,16 +43,16 @@ public class Movilidad {
 
     private Sala buscarSalida(Sala salaActual,String direccion){
         if(direccion.equals("norte")){
-            return salaActual.salidaNorte;
+            return salaActual.getSalidaNorte();
         }
         if(direccion.equals("este")){
-            return salaActual.salidaEste;
+            return salaActual.getSalidaEste();
         }
         if(direccion.equals("sur")){
-            return salaActual.salidaSur;
+            return salaActual.getSalidaSur();
         }
         if(direccion.equals("oeste")){
-            return salaActual.salidaOeste;
+            return salaActual.getSalidaOeste();
         }
         return new NullSala();
     }
@@ -59,16 +60,16 @@ public class Movilidad {
     private void imprimirSalida(){
         System.out.println("Te encuentras " + salaActual.getDescripcion());
             System.out.print("Salidas: ");
-            if(!salaActual.salidaNorte.isNull()) {
+            if(!salaActual.getSalidaNorte().isNull()) {
                 System.out.print("norte ");
             }
-            if(!salaActual.salidaEste.isNull()) {
+            if(!salaActual.getSalidaEste().isNull()) {
                 System.out.print("este ");
             }
-            if(!salaActual.salidaSur.isNull()) {
+            if(!salaActual.getSalidaSur().isNull()) {
                 System.out.print("sur ");
             }
-            if(!salaActual.salidaOeste.isNull()) {
+            if(!salaActual.getSalidaOeste().isNull()) {
                 System.out.print("oeste ");
             }
             System.out.println();

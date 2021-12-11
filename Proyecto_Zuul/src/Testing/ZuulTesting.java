@@ -58,10 +58,10 @@ public class ZuulTesting {
         Sala salaActual = archivoSalas.crearSalas();
 
         assertEquals(salaInicio, salaActual);
-        assertEquals(new NullSala(), salaActual.salidaNorte);
-        assertEquals(salaEste, salaActual.salidaEste);
-        assertEquals(salaSur, salaActual.salidaSur);
-        assertEquals(salaOeste, salaActual.salidaOeste);
+        assertEquals(new NullSala(), salaActual.getSalidaNorte());
+        assertEquals(salaEste, salaActual.getSalidaEste());
+        assertEquals(salaSur, salaActual.getSalidaSur());
+        assertEquals(salaOeste, salaActual.getSalidaOeste());
 
     }
 
